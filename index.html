@@ -5,22 +5,32 @@
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
   </head>
   <body>
   
     <a-scene>
       <a-assets>
-        <a-asset-item id="tank" src="assets/scene.gltf"></a-asset-item>
+        <img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg">
+        <img src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg" id="skyTexture">
+        <img src="https://cdn.aframe.io/a-painter/images/floor.jpg" id="groundTexture">
+        <img src="assets/image1.jpg" id="backImg">
       </a-assets>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"
-           event-set__enter="_event: mouseenter; color: #8FF7FF"
-           event-set__leave="_event: mouseleave; color: #4CC3D9"></a-box>
-      <a-entity gltf-model="#tank" scale="0.01 0.01 0.01" position="2 1 -3"></a-entity>
-      <a-sky src="assets/pano_large.jpg"></a-sky>
+      <a-box src="#boxTexture" position="0 2 -5" rotation="0 45 45" scale="2 2 2">
+        <a-animation attribute="position" to="0 2.2 -4" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+      </a-box>
+  
+      <a-sky src="#backImg"></a-sky>
+
+      <a-light type="ambient" color="#445451"></a-light>
+      <a-light type="point" intensity="2" position="2 4 4"></a-light>
+
       <a-camera>
         <a-cursor></a-cursor>
       </a-camera>
+      <!-- <a-plane src="#groundTexture" rotation="-90 0 0" width="30" height="30" repeat="10 10"></a-plane> -->
+
+      <!-- <a-entity environment="preset: forest; numDressing: 500"></a-entity> -->
     </a-scene>
   </body>
 </html>
