@@ -8,6 +8,21 @@
     <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
   </head>
   <body>
+
+    <script>
+      AFRAME.registerComponent('scale-on-mouseenter', {
+        schema: {
+          to: {default: '2.5 2.5 2.5'}
+        },
+
+        init: function() {
+          var data = this.data;
+          this.el.addEventListener('mouseenter', fuction(){
+            this.setAttribute('scale', data.to)
+          });
+        }
+      });
+    </script>
   
     <a-scene>
       <a-assets>
@@ -20,18 +35,28 @@
         <img src="assets/image4.jpg" id="backImg4">
         <img src="assets/image5.jpg" id="backImg5">
 
+        <audio src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav" autoplay preload></audio>
+
       </a-assets>
-      <!--
-      <a-box src="#boxTexture" position="0 2 -5" rotation="0 45 45" scale="2 2 2">
+      <!-- <a-box src="#boxTexture" position="0 2 -5" rotation="0 45 45" scale="2 2 2" scale-on-mouseenter="to: 2.2 2.2 2.2">
         <a-animation attribute="position" to="0 2.2 -4" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+      </a-box> -->
+
+      <a-box color="#FFF" width="4" height="10" depth="2"
+       position="-10 2 -5" rotation="0 0 45" scale="2 0.5 3"
+       src="#boxTexture">
+        <a-animation attribute="position" to="0 2.2 -5" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+        <!-- These animations will start when the box is looked at. -->
+        <a-animation attribute="scale" begin="mouseenter" dur="300" to="2.3 2.3 2.3"></a-animation>
+        <a-animation attribute="scale" begin="mouseleave" dur="300" to="2 2 2"></a-animation>
+        <a-animation attribute="rotation" begin="click" dur="2000" to="360 405 45"></a-animation>
       </a-box>
-      -->
+
       <a-sky src="#backImg"></a-sky>
 
-<!--
       <a-light type="ambient" color="#445451"></a-light>
       <a-light type="point" intensity="2" position="2 4 4"></a-light>
--->
+
       <a-camera>
         <a-cursor></a-cursor>
       </a-camera>
@@ -39,5 +64,11 @@
 
       <!-- <a-entity environment="preset: forest; numDressing: 500"></a-entity> -->
     </a-scene>
+<!--     <script>
+      var boxEl = document.querySelector('a-box');
+      boxEl.addEventListener('mouseenter', function(){
+        boxEl.setAttribute('scale', {x: 2, y: 2, z: 2});
+      });
+    </script> -->
   </body>
 </html>
