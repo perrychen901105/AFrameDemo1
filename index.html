@@ -5,7 +5,6 @@
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
   </head>
   <body>
   
@@ -20,9 +19,11 @@
         <img id="sechelt-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
       </a-assets>
       
-      <a-sky id="image-360" radius="10" src="city"></a-sky>
+      <a-sky id="image-360" radius="10" src="#city"></a-sky>
 
-      <a-entity class="link"></a-entity>
+      <a-entity class="link" geometry="primitive: plane; height: 1; width: 1"
+                material="shader: flat; src: #cubes-thumb"></a-entity>
+
       <a-camera>
         <a-cursor id="cursor">
           <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
