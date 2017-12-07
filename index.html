@@ -5,34 +5,31 @@
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
   </head>
   <body>
   
     <a-scene>
       <a-assets>
-        <img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg">
-        <img src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg" id="skyTexture">
-        <img src="https://cdn.aframe.io/a-painter/images/floor.jpg" id="groundTexture">
-        <img src="assets/image1.jpg" id="backImg">
+        <!-- <audio src=""></audio> -->
+        <img id="city" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
+        <img id="city-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
+        <img id="cubes" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+        <img id="cubes-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+        <img id="sechelt" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+        <img id="sechelt-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
       </a-assets>
-      <!--
-      <a-box src="#boxTexture" position="0 2 -5" rotation="0 45 45" scale="2 2 2">
-        <a-animation attribute="position" to="0 2.2 -4" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
-      </a-box>
-      -->
-      <a-sky src="#backImg"></a-sky>
+      
+      <a-sky id="image-360" radius="10" src="#city"></a-sky>
 
-<!--
-      <a-light type="ambient" color="#445451"></a-light>
-      <a-light type="point" intensity="2" position="2 4 4"></a-light>
--->
+      <a-entity class="link" geometry="primitive: plane; height: 1; width: 1"
+                material="shader: flat; src: #cubes-thumb"></a-entity>
+
       <a-camera>
-        <a-cursor></a-cursor>
+        <a-cursor id="cursor">
+          <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+          <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+        </a-cursor>
       </a-camera>
-      <!-- <a-plane src="#groundTexture" rotation="-90 0 0" width="30" height="30" repeat="10 10"></a-plane> -->
-
-      <!-- <a-entity environment="preset: forest; numDressing: 500"></a-entity> -->
     </a-scene>
   </body>
 </html>
