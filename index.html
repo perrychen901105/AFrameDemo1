@@ -5,6 +5,10 @@
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+        <script src="./node_modules/aframe-template-component/dist/aframe-template-component.min.js"></script>
+    <script src="./node_modules/aframe-layout-component/dist/aframe-layout-component.min.js"></script>
+    <script src="./node_modules/aframe-event-set-component/dist/aframe-event-set-component.min.js"></script>
+  
   </head>
   <body>
   
@@ -17,13 +21,19 @@
         <img id="cubes-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
         <img id="sechelt" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
         <img id="sechelt-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+        <script id="plane" type="text/html">
+          <a-entity class="link" geometry="primitive: plane; height: 1; width: 1"
+                material="shader: flat; src: ${thumb}"></a-entity>
+        </script>
       </a-assets>
       
       <a-sky id="image-360" radius="10" src="#city"></a-sky>
 
-      <a-entity class="link" geometry="primitive: plane; height: 1; width: 1"
-                material="shader: flat; src: #cubes-thumb"></a-entity>
-
+      <a-entity id="links" layout="layout: line; margin: 1.5" position="-3 -1 -4">
+        <a-entity template="src: #plane" data-thumb="#city-thumb"></a-entity>
+        <a-entity template="src: #plane" data-thumb="#cubes-thumb"></a-entity>
+        <a-entity template="src: #plane" data-thumb="#sechelt-thumb"></a-entity>
+      </a-entity>
       <a-camera>
         <a-cursor id="cursor">
           <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
